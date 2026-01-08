@@ -15,6 +15,12 @@ The following images are referenced in the application and should be placed in t
 - `certificate-academy.jpg` - Academy of Hypno-Experts certificate
 - `certificate-institute.jpg` - Institute certificate
 
+### Content Images
+- `hypnotherapy-vs-therapy.jpg` - Image for "Why Hypnotherapy vs Regular Therapy" section (800x600px recommended, landscape orientation)
+  - **Description:** Illustration showing iceberg metaphor - regular therapy above water (conscious level), hypnotherapy below water (subconscious level)
+  - **Status:** ⏳ Image needs to be added to this directory
+  - **After adding:** Run `npm run optimize-images` to create optimized and WebP versions
+
 ## Image Guidelines
 
 - **Format**: JPG or PNG
