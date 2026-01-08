@@ -9,6 +9,23 @@
       content="Максим Погуляев - Гипнотерапевт. Фокус: тревога в отношениях, созависимость, страхи."
     />
     <title>Максим Погуляев | Гипнотерапия</title>
+
+    <!-- Security Headers -->
+    <!-- XSS Protection -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+
+    <!-- Click-jacking Protection -->
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+
+    <!-- MIME Type Sniffing Protection -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; frame-src 'self' https://*.fillout.com; connect-src 'self';">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,16 +70,43 @@
         }
       }
     </script>
-    <style>
-      body {
-        background-color: #fafaf9; /* Stone-50 matching the new palette */
-      }
-      /* Smooth scrolling for anchor links */
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
-    <script type="module" crossorigin src="/assets/index-BgnUrJ8A.js"></script>
+        <style>
+          body {
+            background-color: #fafaf9; /* Stone-50 matching the new palette */
+          }
+          /* Smooth scrolling for anchor links */
+          html {
+            scroll-behavior: smooth;
+          }
+          /* Accessibility: Focus indicators */
+          *:focus-visible {
+            outline: 2px solid #0d9488;
+            outline-offset: 2px;
+          }
+          /* Skip link styles */
+          .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+          }
+          .sr-only:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            padding: inherit;
+            margin: inherit;
+            overflow: visible;
+            clip: auto;
+            white-space: normal;
+          }
+        </style>
+    <script type="module" crossorigin src="/assets/index-DlVErNWw.js"></script>
   </head>
   <body>
     <div id="root"></div>
