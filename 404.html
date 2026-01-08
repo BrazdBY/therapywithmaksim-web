@@ -64,40 +64,36 @@
     </style>
     <!-- GitHub Pages SPA Redirect for React Router -->
     <!-- This script handles 404 errors on GitHub Pages by redirecting to index.html -->
+    <!-- Works with root base path (/) for custom domain -->
     <script>
       (function() {
         const location = window.location;
         const pathname = location.pathname;
-
+        
         // Only process if we're on 404.html
         if (!pathname.endsWith('404.html')) {
           // Check if we have a redirect parameter from a previous 404
           const params = new URLSearchParams(location.search);
           const redirectPath = params.get('p');
           if (redirectPath) {
-            // Extract base path (e.g., '/therapywithmaksim-web/')
-            const basePath = pathname.split('/').slice(0, 2).join('/') + '/';
-            // Rewrite URL to the requested path
-            const newPath = basePath + redirectPath.replace(/^\//, '');
+            // Use root path for custom domain
+            const newPath = '/' + redirectPath.replace(/^\//, '');
             window.history.replaceState(null, null, newPath + location.hash);
             return;
           }
           return;
         }
-
+        
         // We're on 404.html - extract the original requested path
         // GitHub Pages serves 404.html for any non-existent path
-        // We need to reconstruct the original path
-        const basePath = pathname.split('/').slice(0, 2).join('/') + '/';
-
-        // The path that caused the 404 is everything after the base path, minus '404.html'
-        let requestedPath = pathname.replace(basePath, '').replace(/404\.html$/, '');
-        if (!requestedPath || requestedPath === '/') {
+        // For root base path, the requested path is the pathname minus '404.html'
+        let requestedPath = pathname.replace(/\/404\.html$/, '');
+        if (!requestedPath || requestedPath === '') {
           requestedPath = '/';
         }
-
+        
         // Redirect to index.html with the path as a query parameter
-        window.location.replace(basePath + 'index.html?p=' + encodeURIComponent(requestedPath));
+        window.location.replace('/index.html?p=' + encodeURIComponent(requestedPath));
       })();
     </script>
   </head>
