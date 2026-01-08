@@ -69,7 +69,7 @@
       (function() {
         const location = window.location;
         const pathname = location.pathname;
-        
+
         // Only process if we're on 404.html
         if (!pathname.endsWith('404.html')) {
           // Check if we have a redirect parameter from a previous 404
@@ -83,7 +83,7 @@
           }
           return;
         }
-        
+
         // We're on 404.html - extract the original requested path
         // GitHub Pages serves 404.html for any non-existent path
         // For root base path, the requested path is the pathname minus '404.html'
@@ -91,7 +91,7 @@
         if (!requestedPath || requestedPath === '') {
           requestedPath = '/';
         }
-        
+
         // Redirect to index.html with the path as a query parameter
         window.location.replace('/index.html?p=' + encodeURIComponent(requestedPath));
       })();
