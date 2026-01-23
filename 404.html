@@ -20,6 +20,15 @@
         const location = window.location;
         const pathname = location.pathname;
 
+        // Exclude static files that should be served directly (robots.txt, sitemap.xml, etc.)
+        const staticFiles = ['robots.txt', 'sitemap.xml', 'favicon.ico', 'site.webmanifest', 'yandex_597c89088d4e8e0f.html'];
+        const isStaticFile = staticFiles.some(file => pathname.endsWith('/' + file) || pathname === '/' + file);
+
+        if (isStaticFile) {
+          // Don't process static files - let them be served directly or return 404
+          return;
+        }
+
         // Only process if we're on 404.html
         if (!pathname.endsWith('404.html')) {
           // Check if we have a redirect parameter from a previous 404
