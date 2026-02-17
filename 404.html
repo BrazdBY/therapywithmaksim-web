@@ -13,8 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <!-- GitHub Pages SPA Redirect for React Router -->
-    <!-- This script handles 404 errors on GitHub Pages by redirecting to index.html -->
-    <!-- Works with root base path (/) for custom domain -->
+    <!-- When GitHub Pages serves 404.html for a missing path, the browser URL stays the requested path (e.g. /codependency). -->
+    <!-- This script redirects to index.html?p=<path> so the main app can restore the URL and Router can handle the route. -->
     <script>
       (function() {
         const location = window.location;
@@ -25,34 +25,16 @@
         const isStaticFile = staticFiles.some(file => pathname.endsWith('/' + file) || pathname === '/' + file);
 
         if (isStaticFile) {
-          // Don't process static files - let them be served directly or return 404
           return;
         }
 
-        // Only process if we're on 404.html
-        if (!pathname.endsWith('404.html')) {
-          // Check if we have a redirect parameter from a previous 404
-          const params = new URLSearchParams(location.search);
-          const redirectPath = params.get('p');
-          if (redirectPath) {
-            // Use root path for custom domain
-            const newPath = '/' + redirectPath.replace(/^\//, '');
-            window.history.replaceState(null, null, newPath + location.hash);
-            return;
-          }
-          return;
+        // When GitHub Pages serves 404 for a path like /codependency, we get 404.html content but URL stays /codependency.
+        // So pathname is the requested path, not "404.html". Redirect to index.html with path in ?p= so the app can restore it.
+        // Skip paths that look like static assets (have a file extension) to avoid breaking 404s for missing JS/CSS etc.
+        var hasExtension = /\.[a-zA-Z0-9]+$/.test(pathname.split('?')[0]);
+        if (pathname && pathname !== '/' && pathname !== '/index.html' && !hasExtension) {
+          window.location.replace('/index.html?p=' + encodeURIComponent(pathname));
         }
-
-        // We're on 404.html - extract the original requested path
-        // GitHub Pages serves 404.html for any non-existent path
-        // For root base path, the requested path is the pathname minus '404.html'
-        let requestedPath = pathname.replace(/\/404\.html$/, '');
-        if (!requestedPath || requestedPath === '') {
-          requestedPath = '/';
-        }
-
-        // Redirect to index.html with the path as a query parameter
-        window.location.replace('/index.html?p=' + encodeURIComponent(requestedPath));
       })();
     </script>
   </head>

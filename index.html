@@ -61,5 +61,15 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
+    <!-- Restore SPA path when loaded via 404 redirect (GitHub Pages): index.html?p=/codependency -> /codependency -->
+    <script>
+      (function() {
+        var p = new URLSearchParams(window.location.search).get('p');
+        if (p) {
+          var path = decodeURIComponent(p).replace(/^\/*/, '/') || '/';
+          window.history.replaceState(null, '', path + window.location.hash);
+        }
+      })();
+    </script>
   </body>
 </html>
