@@ -42,8 +42,7 @@
     <!-- MIME Type Sniffing Protection -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
 
-    <!-- Content Security Policy: Yandex and Google use wildcards so analytics/GTM work without blocks -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://*.googletagmanager.com https://*.google.com https://*.googleapis.com https://*.yandex.ru https://*.yandex.com https://*.yandex.net https://yastatic.net https://mc.webvisor.com https://mc.webvisor.org; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://*.googleapis.com; font-src 'self' https://fonts.gstatic.com https://*.gstatic.com; img-src 'self' data: https: blob:; frame-src 'self' https://*.fillout.com https://*.googletagmanager.com https://*.google.com; connect-src 'self' https://*.googletagmanager.com https://*.google.com https://*.googleapis.com https://*.google-analytics.com https://*.analytics.google.com https://*.yandex.ru https://*.yandex.com https://*.yandex.net https://yastatic.net https://mc.webvisor.com https://mc.webvisor.org wss://*.yandex.ru wss://*.yandex.com; child-src 'self' blob: https://*.yandex.ru https://*.yandex.com https://mc.webvisor.com https://mc.webvisor.org; object-src 'none'; base-uri 'self';">
+    <!-- CSP removed: when delivered via meta tag, browsers may ignore 'unsafe-eval', which blocks Yandex Metrika and GTM (they use eval/new Function). To use CSP with analytics, serve Content-Security-Policy HTTP header with 'unsafe-eval' in script-src from your host (e.g. Netlify/Vercel). -->
     <!-- Favicon: favicon.svg, favicon.png (32×32), favicon-192x192.png (header logo: brand circle + sunrise) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
